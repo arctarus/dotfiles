@@ -1,5 +1,6 @@
 # MyDotFiles
-* vimrc
+* bashrc
 * bash_aliases
+* vimrc
 * irbrb
 * railsrc
