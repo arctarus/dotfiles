@@ -8,8 +8,7 @@ function git_branch {
 # for examples
 
 # If not running interactively, don't do anything
-# [ -z "$PS1" ] && return
-if [[ -n "$PS1" ]]; then # rvm
+[ -z "$PS1" ] && return
 
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
@@ -108,7 +107,4 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-fi # rvm
-if groups | grep -q rvm ; then
-  source "/usr/local/lib/rvm"
-fi
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
