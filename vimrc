@@ -5,9 +5,10 @@ color railscasts
 set nocompatible
 set autoindent
 set background=dark
+set showmatch
 set tabstop=2
 set shiftwidth=2
-set showmatch
+set softtabstop=2
 set wrapmargin=2
 set nobk
 set ruler
@@ -20,6 +21,12 @@ set visualbell
 set is
 set nohls
 set nu
+set laststatus=2
+set statusline=%F\ %m\ %{fugitive#statusline()}\ %y%=%l,%c\ %P
+
+:let mapleader = ","
+" Command-T configuration
+let g:CommandTMaxHeight=20
 
 " Minibuffer Explorer Settings
 let g:miniBufExplMapWindowNavVim = 1
@@ -46,6 +53,7 @@ endif
 
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
+set list!
  
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
