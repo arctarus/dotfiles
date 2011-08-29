@@ -40,7 +40,7 @@ set backupdir=~/.vim/backups " Where backups will go.
 set directory=~/.vim/tmp     " Where temporary files will go.
 
 :hi LineNr guifg=black guibg=darkgrey
-:map <F10> :execute 'NERDTreeToggle' <CR>
+:map <F11> :execute 'NERDTreeToggle' <CR>
 
 au  BufRead,BufNewFile * highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 au  BufRead,BufNewFile * match OverLength /\%81v.*/
@@ -50,6 +50,10 @@ if has("gui_running")
   " Maximize gvim window.
   set lines=50 columns=140
 endif
+
+"Invisible character colors
+hi Nontext guifg=#4a4a59
+hi SpecialKey guifg=#4a4a59
 
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
