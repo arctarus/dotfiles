@@ -28,6 +28,9 @@ set statusline=%F\ %m\ %{fugitive#statusline()}\ %y%=%l,%c\ %P
 " Command-T configuration
 let g:CommandTMaxHeight=20
 
+" Add recently accessed projects menu (project plugin)
+set viminfo^=!
+
 " Minibuffer Explorer Settings
 let g:miniBufExplMapWindowNavVim = 1
 let g:miniBufExplMapWindowNavArrows = 1
