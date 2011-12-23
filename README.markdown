@@ -1,6 +1,8 @@
-# My dot files && vim plugins
+My dot files && vim plugins
+===========================
 
-## Dot files included
+Dot files included
+------------------
 
 * vimrc
 * gvimrc
@@ -9,13 +11,20 @@
 * irbrb
 * railsrc
 
-## Instalation
+Instalation
+-----------
 
 ````bash
+git clone git://github.com/arctarus/dotfiles.git ~/.vim
+
 ln -s ~/.vim/vimrc ~/.vimrc
 ln -s ~/.vim/gvimrc ~/.gvimrc
 ln -s ~/.vim/bashrc ~/.bashrc
 ln -s ~/.vim/bash_aliases ~/.bash_aliases
 ln -s ~/.vim/irbrc ~/.irbrc
 ln -s ~/.vim/railsrc ~/.railsrc
+
+cd ~/.vim
+git submodule init
+git submodule update
 ````
