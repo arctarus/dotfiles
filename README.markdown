@@ -11,9 +11,11 @@
 
 ## Instalation
 
+````bash
 ln -s ~/.vim/vimrc ~/.vimrc
 ln -s ~/.vim/gvimrc ~/.gvimrc
 ln -s ~/.vim/bashrc ~/.bashrc
 ln -s ~/.vim/bash_aliases ~/.bash_aliases
 ln -s ~/.vim/irbrc ~/.irbrc
 ln -s ~/.vim/railsrc ~/.railsrc
+````
