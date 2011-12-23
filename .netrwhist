@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/home/gaby/code/telme/videoconference_service/config/initializers'
+let g:netrw_dirhist_2='/home/gaby/code/telme/home_nursing/config/deploy'
+let g:netrw_dirhist_3='/home/gaby/code/telme/videoconference_service/app/assets/stylesheets'
+let g:netrw_dirhist_4='/home/gaby/.rvm/gems/ruby-1.9.2-p290@aprop/gems/jquery-ui-themes-0.0.4'
+let g:netrw_dirhist_5='/home/gaby/code/telme/monitoring_service/spec/dummy/db/migrate'
+let g:netrw_dirhist_6='/home/gaby/code/telme/core/config/initializers'
