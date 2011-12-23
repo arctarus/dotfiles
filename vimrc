@@ -48,12 +48,6 @@ set directory=~/.vim/tmp     " Where temporary files will go.
 au  BufRead,BufNewFile * highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 au  BufRead,BufNewFile * match OverLength /\%81v.*/
 
-if has("gui_running")
-  " GUI is running or is about to start.
-  " Maximize gvim window.
-  set lines=50 columns=140
-endif
-
 "Invisible character colors
 hi Nontext guifg=#4a4a59
 hi SpecialKey guifg=#4a4a59
