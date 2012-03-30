@@ -33,3 +33,4 @@ Plugins
 -------
 * pathogen https://github.com/tpope/vim-pathogen
 * fugitive https://github.com/tpope/vim-fugitive
+* vim-rails https://github.com/tpope/vim-rails.git
