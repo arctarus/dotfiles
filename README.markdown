@@ -36,3 +36,5 @@ Plugins
 * vim-rails https://github.com/tpope/vim-rails.git
 * nerdtree https://github.com/scrooloose/nerdtree
 * ctrlp https://github.com/kien/ctrlp.vim
+* syntastic https://github.com/scrooloose/syntastic
+* vim-javascript https://github.com/pangloss/vim-javascript
