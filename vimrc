@@ -65,3 +65,6 @@ set listchars=tab:▸\ ,eol:¬
 let Tlist_Ctags_Cmd = "/usr/bin/ctags"
 let Tlist_WinWidth = 50
 map <F4> :TlistToggle<cr>
+
+" Ack
+let g:ackprg="ack-grep -H --nocolor --nogroup --column"

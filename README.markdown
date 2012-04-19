@@ -38,3 +38,4 @@ Plugins
 * ctrlp https://github.com/kien/ctrlp.vim
 * syntastic https://github.com/scrooloose/syntastic
 * vim-javascript https://github.com/pangloss/vim-javascript
+* ack https://github.com/mileszs/ack.vim
