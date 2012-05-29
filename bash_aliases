@@ -1,11 +1,12 @@
 # git
 alias gb='git branch'
 alias gba='git branch -a'
+alias gco='git checkout'
 alias gc='git commit -a -v'
 alias gd='git diff | less'
 alias gl='git pull'
 alias gp='git push'
 alias gst='git status'
-alias ga='git add'
+alias ga='git add -u'
 alias sgl='git svn rebase'
 alias sgp='git svn dcommit'
