@@ -10,6 +10,7 @@ Dot files included
 * bash_aliases
 * irbrb
 * railsrc
+* gitconfig
 
 Instalation
 -----------

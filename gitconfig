@@ -1,0 +1,18 @@
+[user]
+	email = arctarusnet@gmail.com
+	name = Gabriel Ortuño
+[giggle]
+	main-window-view = HistoryView
+	main-window-maximized = true
+	main-window-geometry = 493x269+785+24
+	history-view-vpane-position = 446
+	file-view-vpane-position = 610
+[github]
+	user = arctarus
+	token = e8556da8a51c94386f216fdd98477c74
+[color]
+	branch = auto
+	diff = auto
+	status = auto
+[alias]
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
