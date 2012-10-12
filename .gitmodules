@@ -22,3 +22,6 @@
 [submodule "bundle/ruby-refactoring"]
 	path = bundle/ruby-refactoring
 	url = git://github.com/ecomba/vim-ruby-refactoring.git
+[submodule "bundle/matchit"]
+	path = bundle/matchit
+	url = git://github.com/tsaleh/vim-matchit.git
