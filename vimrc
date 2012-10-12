@@ -27,6 +27,9 @@ set nu
 set laststatus=2
 set statusline=%F\ %m\ %{fugitive#statusline()}\ %y%=%l,%c\ %P
 
+" Completition use currrent file and ctags
+set complete=.,t
+
 :let mapleader = ","
 " Command-T configuration
 let g:CommandTMaxHeight=20
@@ -68,3 +71,9 @@ map <F4> :TlistToggle<cr>
 
 " Ack
 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+
+
+" hide print button
+if has('gui_running')
+  aunmenu ToolBar.Print
+endif
