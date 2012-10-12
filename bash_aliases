@@ -31,7 +31,7 @@ alias be="bundle exec"
 alias bake="bundle exec rake"
 
 # Tests and Specs
-alias t="ruby -I test"
+alias t="ruby -I spec"
 alias s="bundle exec rspec"
 alias cuc="bundle exec cucumber"
 
