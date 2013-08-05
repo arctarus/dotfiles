@@ -27,7 +27,9 @@ ln -s ~/.vim/railsrc ~/.railsrc
 
 cd ~/.vim
 git submodule init
+git add submodule url
 git submodule update
+git submodule foreach git pull origin master
 ````
 
 Plugins
@@ -40,3 +42,5 @@ Plugins
 * syntastic https://github.com/scrooloose/syntastic
 * vim-javascript https://github.com/pangloss/vim-javascript
 * ack https://github.com/mileszs/ack.vim
+* vim-commentary: https://github.com/tpope/vim-commentary
+* vim-textobj-entire: https://github.com/kana/vim-textobj-entire
