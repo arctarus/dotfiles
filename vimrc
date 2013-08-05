@@ -22,7 +22,7 @@ set bs=2
 set showcmd
 set visualbell
 set is
-set nohls
+set hls
 set nu
 set laststatus=2
 set statusline=%F\ %m\ %{fugitive#statusline()}\ %y%=%l,%c\ %P
@@ -72,6 +72,8 @@ map <F4> :TlistToggle<cr>
 " Ack
 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 
+" <Ctrl-l> redraws the screen and removes any search highlighting.
+nnoremap <silent> <C-l> :nohl<CR><C-l>
 
 " hide print button
 if has('gui_running')
