@@ -1,9 +1,8 @@
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+execute pathogen#infect()
 
 syntax on
 filetype indent on
-color railscasts
+color codeschool
 
 set nocompatible
 set autoindent
