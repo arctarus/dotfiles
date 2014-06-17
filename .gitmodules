@@ -37,3 +37,6 @@
 [submodule "vim-surround"]
 	path = vim-surround
 	url = https://github.com/tpope/vim-surround.git
+[submodule "bundle/neocomplete"]
+	path = bundle/neocomplete
+	url = https://github.com/Shougo/neocomplete.vim.git
