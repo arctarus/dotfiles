@@ -44,3 +44,5 @@ Plugins
 * ack https://github.com/mileszs/ack.vim
 * vim-commentary: https://github.com/tpope/vim-commentary
 * vim-textobj-entire: https://github.com/kana/vim-textobj-entire
+* vim-endwise https://github.com/tpope/vim-endwise
+* supertab https://github.com/ervandew/supertab
