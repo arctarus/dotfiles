@@ -46,3 +46,4 @@ Plugins
 * vim-textobj-entire: https://github.com/kana/vim-textobj-entire
 * vim-endwise https://github.com/tpope/vim-endwise
 * supertab https://github.com/ervandew/supertab
+* vim-jst https://github.com/briancollins/vim-jst.git
