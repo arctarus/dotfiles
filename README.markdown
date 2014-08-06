@@ -20,8 +20,7 @@ git clone git://github.com/arctarus/dotfiles.git ~/.vim
 
 ln -s ~/.vim/vimrc ~/.vimrc
 ln -s ~/.vim/gvimrc ~/.gvimrc
-ln -s ~/.vim/bashrc ~/.bashrc
-ln -s ~/.vim/bash_aliases ~/.bash_aliases
+ln -s ~/.vim/zshrc ~/.zshrc
 ln -s ~/.vim/irbrc ~/.irbrc
 ln -s ~/.vim/railsrc ~/.railsrc
 
