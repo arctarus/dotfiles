@@ -46,3 +46,4 @@ Plugins
 * vim-endwise https://github.com/tpope/vim-endwise
 * supertab https://github.com/ervandew/supertab
 * vim-jst https://github.com/briancollins/vim-jst.git
+* vim-coffee-script https://github.com/kchmck/vim-coffee-script
