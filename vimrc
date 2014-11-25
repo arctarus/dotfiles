@@ -105,6 +105,14 @@ endif
 let g:indentLine_color_term = 235
 let g:indentLine_char = '│'
 
+" Customize airline
+" https://github.com/bling/vim-airline
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'powerlineish'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+
 " Neocomplete
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
