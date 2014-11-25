@@ -4,6 +4,7 @@ syntax on
 filetype indent on
 colorscheme codeschool
 
+set guifont=Ubuntu\ Mono\ 13
 set nocompatible
 set autoindent
 set background=dark
@@ -29,12 +30,28 @@ set statusline=%F\ %m\ %{fugitive#statusline()}\ %y%=%l,%c\ %P
 " Completition use currrent file and ctags
 set complete=.,t
 
-:let mapleader = ","
+" Leader
+let mapleader = "\<Space>"
+nnoremap <Leader>o :CtrlP<CR>
+nnoremap <Leader>w :w<CR>
+vmap <Leader>y "+y
+vmap <Leader>d "+d
+nmap <Leader>P "+P
+vmap <Leader>p "+p
+nmap <Leader><Leader> V
+
+" Seach Object
+vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
+    \:<C-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<CR>gv
+omap s :normal vs<CR>
+
 " Ctrlp config
 let g:CommandTMaxHeight=20
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+let g:ctrlp_use_caching = 0
 
 " Add recently accessed projects menu (project plugin)
 set viminfo^=!
