@@ -100,6 +100,11 @@ if has('gui_running')
   aunmenu ToolBar.Print
 endif
 
+" Customize indentLine
+" https://github.com/Yggdroot/indentLine
+let g:indentLine_color_term = 235
+let g:indentLine_char = '│'
+
 " Neocomplete
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
