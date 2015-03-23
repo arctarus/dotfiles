@@ -8,6 +8,11 @@ IRB.conf[:PROMPT_MODE] = :SIMPLE
 
 require 'rubygems'
 
-#if ($0 == 'irb' && ENV['RAILS_ENV']) || ($0 == 'script/rails' && Rails.env)
-# load File.dirname(__FILE__) + '/.railsrc'
-#end
+# railsrc_path = File.expand_path('~/.railsrc')
+# if ( ENV['RAILS_ENV'] || defined? Rails ) && File.exist?( railsrc_path )
+#   begin
+#     load railsrc_path
+#   rescue Exception
+#     warn "Could not load: #{ railsrc_path }" # because of $!.message
+#   end
+# end

@@ -4,7 +4,7 @@ syntax on
 filetype indent on
 colorscheme codeschool
 
-set guifont=Ubuntu\ Mono\ 13
+set guifont=Ubuntu\ Mono\ 12
 set nocompatible
 set autoindent
 set background=dark
@@ -100,6 +100,9 @@ if has('gui_running')
   aunmenu ToolBar.Print
 endif
 
+let g:vimrubocop_keymap = 0
+nmap <Leader>r :RuboCop<CR>
+
 " Customize indentLine
 " https://github.com/Yggdroot/indentLine
 let g:indentLine_color_term = 235
@@ -112,6 +115,9 @@ let g:airline_theme = 'powerlineish'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
+
+"" JSON pretty print
+map <leader>jp  <Esc>:%!json_xs -f json -t json-pretty<CR>
 
 " Neocomplete
 " Disable AutoComplPop.
