@@ -1,5 +1,7 @@
 *.swp
+plugged
 backups/*
 !backups/.gitkeep
 tmp/*
 !tmp/.gitkeep
+.netrwhist

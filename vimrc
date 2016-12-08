@@ -1,6 +1,5 @@
-execute pathogen#infect()
-
 syntax on
+
 filetype indent on
 colorscheme codeschool
 
@@ -45,22 +44,9 @@ vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
     \:<C-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<CR>gv
 omap s :normal vs<CR>
 
-" Ctrlp config
-let g:CommandTMaxHeight=20
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
-let g:ctrlp_use_caching = 0
-
-" Add recently accessed projects menu (project plugin)
-set viminfo^=!
-
-" Minibuffer Explorer Settings
-let g:miniBufExplMapWindowNavVim = 1
-let g:miniBufExplMapWindowNavArrows = 1
-let g:miniBufExplMapCTabSwitchBufs = 1
-let g:miniBufExplModSelTarget = 1
+"Invisible character colors
+hi Nontext guifg=#4a4a59
+hi SpecialKey guifg=#4a4a59
 
 " Backups & Files
 set backup                   " Enable creation of backup file.
@@ -68,14 +54,9 @@ set backupdir=~/.vim/backups " Where backups will go.
 set directory=~/.vim/tmp     " Where temporary files will go.
 
 :hi LineNr guifg=black guibg=darkgrey
-:map <F11> :execute 'NERDTreeToggle' <CR>
 
 au  BufRead,BufNewFile * highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 au  BufRead,BufNewFile * match OverLength /\%81v.*/
-
-"Invisible character colors
-hi Nontext guifg=#4a4a59
-hi SpecialKey guifg=#4a4a59
 
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
@@ -88,6 +69,69 @@ let Tlist_Ctags_Cmd = "/usr/bin/ctags"
 let Tlist_WinWidth = 50
 map <F4> :TlistToggle<cr>
 
+" Add recently accessed projects menu (project plugin)
+set viminfo^=!
+
+" Minibuffer Explorer Settings
+let g:miniBufExplMapWindowNavVim = 1
+let g:miniBufExplMapWindowNavArrows = 1
+let g:miniBufExplMapCTabSwitchBufs = 1
+let g:miniBufExplModSelTarget = 1
+
+" hide print button
+if has('gui_running')
+  aunmenu ToolBar.Print
+endif
+
+
+" Vim Plug
+call plug#begin('~/.vim/plugged')
+
+Plug 'rking/ag.vim'
+Plug 'kien/ctrlp.vim'
+Plug 'Yggdroot/indentLine'
+Plug 'Shougo/neocomplete.vim'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'ervandew/supertab'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-projectionist'
+Plug 'vim-syntastic/syntastic'
+Plug 'sheerun/vim-polyglot'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+" Git
+Plug 'tpope/vim-fugitive'
+
+" Ruby
+Plug 'ngmy/vim-rubocop', { 'for': 'ruby' }
+Plug 'tpope/vim-rails', { 'for': 'ruby' }
+
+" Elixir
+Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
+Plug 'c-brenn/phoenix.vim', { 'for': 'elixir' }
+
+call plug#end()
+" END Vim Plug
+
+" Alchemist
+let g:alchemist_tag_disable = 1
+
+" Ctrlp config
+let g:CommandTMaxHeight=20
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+let g:ctrlp_use_caching = 0
+
+" NERDTree
+:map <F11> :execute 'NERDTreeToggle' <CR>
+
 " Ag - the silver searcher
 let g:agprg="ag --nocolor --nogroup --column"
 let g:aghighlight=1
@@ -95,11 +139,10 @@ let g:aghighlight=1
 " <Ctrl-l> redraws the screen and removes any search highlighting.
 nnoremap <silent> <C-l> :nohl<CR><C-l>
 
-" hide print button
-if has('gui_running')
-  aunmenu ToolBar.Print
-endif
+" Gutentags
+let g:gutentags_cache_dir = '~/.tags_cache'
 
+" Rubocop
 let g:vimrubocop_keymap = 0
 nmap <Leader>r :RuboCop<CR>
 
