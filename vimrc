@@ -1,7 +1,42 @@
+" Vim Plug
+call plug#begin('~/.vim/plugged')
+
+Plug 'rking/ag.vim'
+Plug 'kien/ctrlp.vim'
+Plug 'Yggdroot/indentLine'
+Plug 'Shougo/neocomplete.vim'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'ervandew/supertab'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-projectionist'
+Plug 'vim-syntastic/syntastic'
+Plug 'sheerun/vim-polyglot'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'flazz/vim-colorschemes'
+Plug 'jiangmiao/auto-pairs'
+
+" Git
+Plug 'tpope/vim-fugitive'
+
+" Ruby
+Plug 'ngmy/vim-rubocop', { 'for': 'ruby' }
+Plug 'tpope/vim-rails', { 'for': 'ruby' }
+
+" Elixir
+Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
+Plug 'c-brenn/phoenix.vim', { 'for': 'elixir' }
+
+call plug#end()
+
 syntax on
+colorscheme codeschool
 
 filetype indent on
-colorscheme codeschool
 
 set guifont=Ubuntu\ Mono\ 12
 set nocompatible
@@ -78,46 +113,6 @@ let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplModSelTarget = 1
 
-" hide print button
-if has('gui_running')
-  aunmenu ToolBar.Print
-endif
-
-
-" Vim Plug
-call plug#begin('~/.vim/plugged')
-
-Plug 'rking/ag.vim'
-Plug 'kien/ctrlp.vim'
-Plug 'Yggdroot/indentLine'
-Plug 'Shougo/neocomplete.vim'
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'ervandew/supertab'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-dispatch'
-Plug 'tpope/vim-projectionist'
-Plug 'vim-syntastic/syntastic'
-Plug 'sheerun/vim-polyglot'
-Plug 'ludovicchabant/vim-gutentags'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-
-" Git
-Plug 'tpope/vim-fugitive'
-
-" Ruby
-Plug 'ngmy/vim-rubocop', { 'for': 'ruby' }
-Plug 'tpope/vim-rails', { 'for': 'ruby' }
-
-" Elixir
-Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
-Plug 'c-brenn/phoenix.vim', { 'for': 'elixir' }
-
-call plug#end()
-" END Vim Plug
-
 " Alchemist
 let g:alchemist_tag_disable = 1
 
@@ -142,6 +137,12 @@ nnoremap <silent> <C-l> :nohl<CR><C-l>
 " Gutentags
 let g:gutentags_cache_dir = '~/.tags_cache'
 
+" Syntastic
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
 " Rubocop
 let g:vimrubocop_keymap = 0
 nmap <Leader>r :RuboCop<CR>
@@ -163,6 +164,7 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 map <leader>jp  <Esc>:%!json_xs -f json -t json-pretty<CR>
 
 " Neocomplete
+"Note: This option must be set in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
 " Use neocomplete.
@@ -171,7 +173,6 @@ let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 " Set minimum syntax keyword length.
 let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 
 " Define dictionary.
 let g:neocomplete#sources#dictionary#dictionaries = {
@@ -194,29 +195,17 @@ inoremap <expr><C-l>     neocomplete#complete_common_string()
 " <CR>: close popup and save indent.
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function()
-  return neocomplete#close_popup() . "\<CR>"
+  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
   " For no inserting <CR> key.
-  "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+  "return pumvisible() ? "\<C-y>" : "\<CR>"
 endfunction
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplete#close_popup()
-inoremap <expr><C-e>  neocomplete#cancel_popup()
 " Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
-
-" For cursor moving in insert mode(Not recommended)
-"inoremap <expr><Left>  neocomplete#close_popup() . "\<Left>"
-"inoremap <expr><Right> neocomplete#close_popup() . "\<Right>"
-"inoremap <expr><Up>    neocomplete#close_popup() . "\<Up>"
-"inoremap <expr><Down>  neocomplete#close_popup() . "\<Down>"
-" Or set this.
-"let g:neocomplete#enable_cursor_hold_i = 1
-" Or set this.
-"let g:neocomplete#enable_insert_char_pre = 1
+"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
 
 " AutoComplPop like behavior.
 "let g:neocomplete#enable_auto_select = 1

@@ -2,6 +2,6 @@
 plugged
 backups/*
 !backups/.gitkeep
+.netrwhist
 tmp/*
 !tmp/.gitkeep
-.netrwhist
