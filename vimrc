@@ -19,6 +19,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'flazz/vim-colorschemes'
 Plug 'jiangmiao/auto-pairs'
+Plug 'vim-scripts/taglist.vim'
 
 " Git
 Plug 'tpope/vim-fugitive'
@@ -96,7 +97,7 @@ au  BufRead,BufNewFile * match OverLength /\%81v.*/
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
 set list!
- 
+
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
 
@@ -137,15 +138,20 @@ nnoremap <silent> <C-l> :nohl<CR><C-l>
 " Gutentags
 let g:gutentags_cache_dir = '~/.tags_cache'
 
+" Rubocop
+let g:vimrubocop_keymap = 0
+let g:vimrubocop_config = '/rubocop.yml'
+nmap <Leader>rc :RuboCop<CR>
+
 " Syntastic
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-" Rubocop
-let g:vimrubocop_keymap = 0
-nmap <Leader>r :RuboCop<CR>
+let g:syntastic_check_on_wq = 1
+let g:syntastic_aggregate_errors = 1
+let g:syntastic_ruby_checkers = ['mri', 'rubocop', 'reek']
+let g:syntastic_enable_elixir_checker = 1
+let g:syntastic_elixir_checkers = ['elixir']
 
 " Customize indentLine
 " https://github.com/Yggdroot/indentLine
