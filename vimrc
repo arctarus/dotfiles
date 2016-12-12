@@ -237,6 +237,8 @@ let g:syntastic_aggregate_errors = 1
 let g:syntastic_ruby_checkers = ['mri', 'rubocop', 'reek']
 let g:syntastic_enable_elixir_checker = 1
 let g:syntastic_elixir_checkers = ['elixir']
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 
 Plug 'sheerun/vim-polyglot'
 
@@ -274,6 +276,26 @@ nmap <Leader>rc :RuboCop<CR>
 
 
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
+
+" Go
+Plug 'fatih/vim-go', { 'for': 'go' }
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_types = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:go_fmt_command = "goimports"
+
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+au FileType go nmap <Leader>ds <Plug>(go-def-split)
+au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
 
 " Elixir
 Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
