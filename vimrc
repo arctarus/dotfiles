@@ -204,8 +204,8 @@ Plug 'flazz/vim-colorschemes'
 
 Plug 'rking/ag.vim'
 " Ag - the silver searcher
-let g:agprg="ag --nocolor --nogroup --column"
-let g:aghighlight=1
+let g:ag_prg="ag --nocolor --nogroup --column"
+let g:ag_highlight=1
 
 Plug 'kien/ctrlp.vim'
 nnoremap <Leader>o :CtrlP<CR>
