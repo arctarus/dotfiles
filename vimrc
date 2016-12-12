@@ -111,7 +111,7 @@ set pastetoggle=<F11>
 "
 " Indentation settings according to personal preference.
  
-" Indentation settings for using 4 spaces instead of tabs.
+" Indentation settings for using 2 spaces instead of tabs.
 " Do not change 'tabstop' from its default value of 8 with this setup.
 set shiftwidth=2
 set softtabstop=2
@@ -162,6 +162,10 @@ nmap <Leader>P "+P
 vmap <Leader>p "+p
 nmap <Leader><Leader> V
 
+"" JSON pretty print
+map <leader>jp  <Esc>:%!json_xs -f json -t json-pretty<CR>
+
+
 " Seach Object
 vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
     \:<C-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<CR>gv
@@ -192,9 +196,6 @@ let g:miniBufExplMapWindowNavVim = 1
 let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplModSelTarget = 1
-
-"" JSON pretty print
-map <leader>jp  <Esc>:%!json_xs -f json -t json-pretty<CR>
 
 " Vim Plug
 call plug#begin('~/.vim/plugged')
@@ -271,7 +272,7 @@ Plug 'tpope/vim-fugitive'
 " Ruby
 Plug 'ngmy/vim-rubocop', { 'for': 'ruby' }
 let g:vimrubocop_keymap = 0
-let g:vimrubocop_config = '/rubocop.yml'
+let g:vimrubocop_config = '~/code/cabify/cabify_server/.rubocop.yml'
 nmap <Leader>rc :RuboCop<CR>
 
 
@@ -302,6 +303,14 @@ Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
 let g:alchemist_tag_disable = 1
 
 Plug 'c-brenn/phoenix.vim', { 'for': 'elixir' }
+
+" Ansible
+Plug 'pearofducks/ansible-vim'
+let g:ansible_extra_syntaxes = "sh.vim ruby.vim"
+let g:ansible_attribute_highlight = "ob"
+let g:ansible_name_highlight = 'd'
+let g:ansible_extra_keywords_highlight = 1
+
 
 Plug 'Shougo/neocomplete.vim'
 "Note: This option must be set in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
