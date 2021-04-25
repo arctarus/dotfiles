@@ -10,7 +10,7 @@ filetype indent plugin on
 " Enable syntax highlighting
 syntax on
 
-set guifont=Ubuntu\ Mono\ 12
+set guifont=Ubuntu\ Mono\ 14
 
 "------------------------------------------------------------
 " Must have options {{{1
@@ -31,6 +31,16 @@ set guifont=Ubuntu\ Mono\ 12
 " try to quit without saving, and swap files will keep you safe if your computer
 " crashes.
 set hidden
+
+" Maintain undo history between sessions
+set undofile
+set undodir=~/.vim/undohistories
+
+" Set bigger history of executed commands
+set history=1000
+
+" Automatically re-read files if unmodified inside Vim
+set autoread
 
 " Better command-line completion
 set wildmenu
@@ -71,6 +81,9 @@ set autoindent
 " coming from other editors would expect.
 set nostartofline
 
+" Mark the line where the cursor is currently
+set cursorline
+
 " Display the cursor position on the last line of the screen or in the status
 " line of a window
 set ruler
@@ -78,12 +91,18 @@ set ruler
 " Always display the status line, even if only one window is displayed
 set laststatus=2
 
+" Maximum number of tab pages that can be opened from the command line
+set tabpagemax=40
+
 " Instead of failing a command because of unsaved changes, instead raise a
 " dialogue asking if you wish to save changed files.
 set confirm
 
 " Use visual bell instead of beeping when doing something wrong
 set visualbell
+
+" Disable beep on errors
+set noerrorbells
 
 " And reset the terminal code for the visual bell. If visualbell is set, and
 " this line is also included, vim will neither flash nor beep. If visualbell
@@ -99,12 +118,16 @@ set cmdheight=2
 
 " Display line numbers on the left
 set number
+set relativenumber
 
 " Quickly time out on keycodes, but never time out on mappings
 set notimeout ttimeout ttimeoutlen=200
 
 " Use <F11> to toggle between 'paste' and 'nopaste'
 set pastetoggle=<F11>
+
+" Set the window's title reflecting the file currently edited
+set title
 
 "------------------------------------------------------------
 " Indentation options {{{1
@@ -156,15 +179,21 @@ set complete=.,t
 " Leader
 let mapleader = "\<Space>"
 nnoremap <Leader>w :w<CR>
+nnoremap <Leader>wq :wq<CR>
+nnoremap <Leader>q :q<CR>
 vmap <Leader>y "+y
 vmap <Leader>d "+d
 nmap <Leader>P "+P
+vmap <Leader>P "+P
 vmap <Leader>p "+p
 nmap <Leader><Leader> V
 
 "" JSON pretty print
 map <leader>jp  <Esc>:%!json_xs -f json -t json-pretty<CR>
 
+" Move visual selection
+vnoremap J :m '>+1<cr>gv=gv
+vnoremap K :m '<-2<cr>gv=gv
 
 " Seach Object
 vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
@@ -200,30 +229,59 @@ let g:miniBufExplModSelTarget = 1
 " Vim Plug
 call plug#begin('~/.vim/plugged')
 
-Plug 'flazz/vim-colorschemes'
+" Plug 'flazz/vim-colorschemes'
+Plug 'ghifarit53/tokyonight-vim'
+
+let g:tokyonight_style = 'storm' " available: night, storm
+let g:tokyonight_enable_italic = 1
+
+Plug 'rakr/vim-one'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'Rigellute/shades-of-purple.vim'
+Plug 'ayu-theme/ayu-vim'
+set termguicolors
+let ayucolor="mirage"
 
 Plug 'rking/ag.vim'
 " Ag - the silver searcher
 let g:ag_prg="ag --nocolor --nogroup --column"
 let g:ag_highlight=1
 
-Plug 'kien/ctrlp.vim'
-nnoremap <Leader>o :CtrlP<CR>
-let g:CommandTMaxHeight=20
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
-let g:ctrlp_use_caching = 0
+Plug 'jremmen/vim-ripgrep'
+
+"Fuzzy finder
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+nnoremap <Leader>o :Files<CR>
+nnoremap <Leader>f :GFiles<CR>
+nnoremap <Leader>g :GFiles?<CR>
+nnoremap <Leader>b :Buffers<CR>
+nnoremap <Leader>s :Snippets<CR>
 
 Plug 'Yggdroot/indentLine'
-let g:indentLine_color_term = 235
-let g:indentLine_char = '│'
+let g:indentLine_char = '|'
+let g:indentLine_first_char = '|'
+let g:indentLine_showFirstIndentLevel = 1
+" let g:indentLine_setColors = 0
 
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'Xuyuanp/nerdtree-git-plugin'
 :map <F11> :execute 'NERDTreeToggle' <CR>
 
-Plug 'ervandew/supertab'
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+    \ }
+
+
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-surround'
@@ -243,18 +301,36 @@ let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 
 Plug 'sheerun/vim-polyglot'
 
+" Snippets
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+
+" Autocomplete
+Plug 'codota/tabnine-vim'
+
+let g:UltiSnipsExpandTrigger="<c-tab>"
+let g:UltiSnipsListSnippets="<c-s-tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+" TagBar
+Plug 'majutsushi/tagbar'
+nmap <F8> :TagbarToggle<CR>
+
 Plug 'ludovicchabant/vim-gutentags'
 let g:gutentags_cache_dir = '~/.tags_cache'
 
 
 Plug 'vim-airline/vim-airline'
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'powerlineish'
+let g:airline_theme = 'tokyonight'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
-Plug 'vim-airline/vim-airline-themes'
 Plug 'jiangmiao/auto-pairs'
 
 Plug 'vim-scripts/taglist.vim'
@@ -279,7 +355,7 @@ nmap <Leader>rc :RuboCop<CR>
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
 
 " Go
-Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go' }
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_fields = 1
@@ -287,6 +363,9 @@ let g:go_highlight_types = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:go_fmt_command = "goimports"
+let g:go_gopls_enabled = 0
+let g:go_def_mode='omnifunc'
+let g:go_info_mode='omnifunc'
 
 au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
@@ -300,89 +379,25 @@ au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
 
 " Elixir
 Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
-let g:alchemist_tag_disable = 1
+let g:alchemist#elixir_erlang_src = "~/.asdf/installs"
 
 Plug 'c-brenn/phoenix.vim', { 'for': 'elixir' }
+Plug 'elixir-editors/vim-elixir', { 'for': 'elixir' }
+Plug 'mhinz/vim-mix-format', { 'for': 'elixir' }
+let g:mix_format_on_save = 1
 
-" Ansible
-Plug 'pearofducks/ansible-vim'
-let g:ansible_extra_syntaxes = "sh.vim ruby.vim"
-let g:ansible_attribute_highlight = "ob"
-let g:ansible_name_highlight = 'd'
-let g:ansible_extra_keywords_highlight = 1
+Plug 'janko/vim-test'
+nmap <silent> t<C-n> :TestNearest<CR>
+nmap <silent> t<C-f> :TestFile<CR>
+nmap <silent> t<C-s> :TestSuite<CR>
+nmap <silent> t<C-l> :TestLast<CR>
+nmap <silent> t<C-g> :TestVisit<CR>
 
+Plug 'jvirtanen/vim-hcl'
 
-Plug 'Shougo/neocomplete.vim'
-"Note: This option must be set in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-
-" Define dictionary.
-let g:neocomplete#sources#dictionary#dictionaries = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
-        \ }
-
-" Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-" Plugin key-mappings.
-inoremap <expr><C-g>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? "\<C-y>" : "\<CR>"
-endfunction
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-" Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
-
-" AutoComplPop like behavior.
-"let g:neocomplete#enable_auto_select = 1
-
-" Shell like behavior(not recommended).
-"set completeopt+=longest
-"let g:neocomplete#enable_auto_select = 1
-"let g:neocomplete#disable_auto_complete = 1
-"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
-
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
-"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-
-" For perlomni.vim setting.
-" https://github.com/c9s/perlomni.vim
-let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 call plug#end()
 
-colorscheme codeschool
+" colorscheme ayu
+" colorscheme shades_of_purple
+" colorscheme one
+colorscheme tokyonight

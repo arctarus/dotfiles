@@ -1,7 +1,9 @@
-*.swp
-plugged
-backups/*
 !backups/.gitkeep
-.netrwhist
-tmp/*
 !tmp/.gitkeep
+*.swp
+.netrwhist
+backups/*
+plugged
+tmp/*
+undohistories
+view
